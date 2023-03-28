@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS milagro;
+CREATE DATABASE milagro;

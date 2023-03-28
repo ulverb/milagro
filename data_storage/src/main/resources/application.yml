@@ -1,0 +1,29 @@
+server:
+  port: ${STORAGE_PORT:8003}
+
+spring:
+  application:
+    name: data_storage
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/milagro
+    username: root
+    password: unix11
+  jpa:
+    database-platform: org.hibernate.dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+
+
+# Actuator property - performance impact
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always

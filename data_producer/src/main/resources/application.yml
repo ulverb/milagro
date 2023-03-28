@@ -1,0 +1,32 @@
+server:
+  port: ${PRODUCER_PORT:8001}
+
+spring:
+  application:
+    name: data_producer
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+
+
+topic:
+  name:
+    producer: person.sender
+
+auto:
+  create:
+    topics:
+      enable: true
+
+# Actuator property - performance impact
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always

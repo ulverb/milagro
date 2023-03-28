@@ -1,0 +1,34 @@
+server:
+  port: ${CONSUMER_PORT:8002}
+
+spring:
+  application:
+    name: data_consumer
+  kafka:
+    consumer:
+      bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+      group-id: group_id
+
+topic:
+  name:
+    consumer: person.sender
+
+
+auto:
+  create:
+    topics:
+      enable: true
+
+
+# Actuator property - performance impact
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+
+person:
+  state:
+    url: ${PERSON_SERVICE_URL:http://localhost:8003/upload/person}
